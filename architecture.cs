@@ -39,4 +39,4 @@ class Timeline
 
 }
 
-然后controller应该可以放在form类里，接受键盘事件和按钮事件并调用相应方法
+//然后controller应该可以放在form类里，接受键盘事件和按钮事件并调用相应方法
