@@ -1,28 +1,31 @@
-//默认返回值0表示正常，错误应该抛出异常
+// 错误应该抛出异常
 class Player
 {
 	//控制WMP控件（或者是其它播放控件
 	//可以从WMP派生？
 
 	//加载媒体文件
-	int load(String filename);
-	int media_play();
-	int media_pause();
-	//获取当前进度时间
-	DateTime getTime();
-	//设置进度条时间
-	int setTime(DateTime t);
+	void Load(string filename);
+	void Play();
+	void Pause();
+	
+	//当前进度时间
+	TimeSpan Time
+	{
+		get;
+		set;
+	}
 }
 
 class Muxer
 {
 	//混流
-	int Mux(String media_file, String srt_file);
+	void Mux(string mediaFile, string srtFile);
 }
 
 class Timeline
 {
-	int KeyStartStop()
+	void Tap()
 	{
 	//用户按下开始，停止键表示一条字幕的开始和结束
 	//如果之前没有按下开始键，那么这次调用就是表示开始
@@ -33,9 +36,9 @@ class Timeline
 	}
 
 	//用户按下结束键，结束记录，可以生成SRT文件了
-	int KeyTerminate()
+	void Terminate();
 	//导出srt文件
-	int GenerateSRTFile(String filename);
+	void WriteTo(string filename);
 
 }
 
