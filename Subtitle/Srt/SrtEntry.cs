@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SubtitleEditor.Subtitle.Srt
 {
-    public struct SrtEntry : ISrtEntry
+    public class SrtEntry : ISrtEntry
     {
         private TimeSpan begin, duration;
         private string text;
