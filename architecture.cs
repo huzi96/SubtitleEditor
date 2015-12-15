@@ -20,6 +20,7 @@ class Player
 class Muxer
 {
 	//混流
+	//ffmpeg
 	void Mux(string mediaFile, string srtFile);
 }
 
