@@ -26,18 +26,14 @@ class Muxer
 
 class Timeline
 {
-	void Tap()
-	{
-	//用户按下开始，停止键表示一条字幕的开始和结束
-	//如果之前没有按下开始键，那么这次调用就是表示开始
-	//否则表示结束
-	//如果是开始则记录下开始时间
-	//如果是结束则产生一条时间戳记录
+	//产生一条时间戳记录
+	void Push(TimeSpan begin, TimeSpan end, string text);
 
-	}
+	delegate bool SubtitlePredicate(TimeSpan begin, TimeSpan end, string text);
 
-	//用户按下结束键，结束记录，可以生成SRT文件了
-	void Terminate();
+	// 删除符合predicate的字幕记录
+	void RemoveAll(SubtitlePredicate predicate);
+	
 	//导出srt文件
 	void WriteTo(string filename);
 
