@@ -29,11 +29,13 @@ class Timeline
 	//产生一条时间戳记录
 	void Push(TimeSpan begin, TimeSpan end, string text);
 
-	delegate bool SubtitlePredicate(TimeSpan begin, TimeSpan end, string text);
+	delegate bool SubtitlePredicate(Subtitle.Srt.ISrtEntry entry);
 
 	// 删除符合predicate的字幕记录
 	void RemoveAll(SubtitlePredicate predicate);
-	
+	// 返回符合predicate的字幕记录
+	IEnumerable<Subtitle.Srt.ISrtEntry> Filter(SubtitlePredicate predicate);
+
 	//导出srt文件
 	void WriteTo(string filename);
 
