@@ -10,7 +10,7 @@ namespace SubtitleEditor.FFmpeg
 {
     class FFmpegWrapper
     {
-        //对有
+        //对这些参数指定的视频文件调用ffmpeg进行字幕渲染
         public void Render(String videoFileName, String srtFileName, String TargetFile = "")
         {
             string extention = videoFileName.Split('.').Last<string>();
@@ -37,6 +37,7 @@ namespace SubtitleEditor.FFmpeg
             prc.Start();
         }
         public delegate void renderEventHandler(object sender, System.EventArgs arg);
+        //异步渲染完成的事件
         public event renderEventHandler renderComplete;
     }
 }
