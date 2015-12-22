@@ -5,7 +5,7 @@ namespace SubtitleEditor.Subtitle.Srt
     /// <summary>
     /// 表示一条可以被写入为Srt格式的字幕。
     /// </summary>
-    public interface ISrtEntry
+    public interface ISrtEntry : IEquatable<ISrtEntry>
     {
         /// <summary>
         /// 获取/设置字幕的开始时间。

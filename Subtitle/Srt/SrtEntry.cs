@@ -87,5 +87,23 @@ namespace SubtitleEditor.Subtitle.Srt
             this.text = text;
             this.rectangle = rectangle;
         }
+
+        public bool Equals(ISrtEntry other)
+        {
+            if (ReferenceEquals(other, null))
+                return false;
+            return (Begin == other.Begin) && (Duration == other.Duration) && (End == other.End) && (Text == other.Text);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as ISrtEntry;
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return begin.GetHashCode() ^ duration.GetHashCode() ^ text.GetHashCode();
+        }
     }
 }
