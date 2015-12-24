@@ -1,1 +1,7 @@
 .DS_Store
+/Subtitle/SubtitleEditorForm/obj/x86/Debug
+/Subtitle/SubtitleEditorForm/bin/Debug
+/Subtitle/SubtitleEditor/obj/Debug
+/Subtitle/SubtitleEditor/bin
+/Subtitle/SubtitleEditor/.vs/SubEditorMerge/v14
+*.suo
