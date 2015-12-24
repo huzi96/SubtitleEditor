@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace SubtitleEditor.FFmpeg
 {
@@ -33,7 +32,7 @@ namespace SubtitleEditor.FFmpeg
             prc.EnableRaisingEvents = true;
             
             prc.StartInfo.Arguments = string.Format("-i {0} -vf subtitles={1} {2}", videoFileName,srtFileName,TargetFile);
-            prc.Exited += (sender, args) => { this.renderComplete(sender, args); MessageBox.Show("finish"); };
+            prc.Exited += (sender, args) => { this.renderComplete(sender, args); };
             prc.Start();
         }
         public delegate void renderEventHandler(object sender, System.EventArgs arg);
