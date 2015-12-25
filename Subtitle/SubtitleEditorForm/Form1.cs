@@ -20,14 +20,19 @@ namespace SubtitleEditorForm
 
             /* 注册事件处理函数 */
             control.Click += model.clickHandler;
-            button_play.Click += (sender,args)=> { model.media.play(); } ;
+            //button_play.Click += (sender,args)=> { model.media.play(); } ;
             button_export.Click += (sender, args) => { model.testing_export(); };
             /* 执行testing任务 */
             model.testing();
         }
 
         static bool isSubtitleOpenFromFile = false;
+        //字幕是否来自文件（保存/另存为用）
         static bool isVideoOpen = false;
+        //视频是否已经打开
+        static bool isSubtitleOpen = false;
+        //字幕是否已经打开
+        //上面两个可以用于判断是否可以添加字幕进行操作……
         static String currentSrtPath = "";
         //当前字幕文件的路径
         static String currentVideoPath = "";
@@ -46,7 +51,11 @@ namespace SubtitleEditorForm
              * close the video
              */
             this.CloseViedo.Enabled = false;
+            this.button_play.Enabled = false;
+            isVideoOpen = false;
+            this.button_play.Text = "播放";
             currentVideoPath = "";
+            model.media.SetURL(currentVideoPath);
         }
 
         /*
@@ -60,9 +69,9 @@ namespace SubtitleEditorForm
              */
             if (ofd.ShowDialog() == DialogResult.OK)
             { 
-                isVideoOpen = true;
                 currentVideoPath = ofd.FileName;
                 this.CloseViedo.Enabled = true;
+                this.button_play.Enabled = true;
                 model.media.SetURL(currentVideoPath);
             }
         }
@@ -77,6 +86,7 @@ namespace SubtitleEditorForm
             this.SaveSubtAs.Enabled = true;
             this.SaveSubt.Enabled = false;
             this.EditArea.Text = "";
+            isSubtitleOpen = true;
             currentSrtPath = "";
         }
 
@@ -93,6 +103,7 @@ namespace SubtitleEditorForm
                 this.EditArea.Enabled = true;
                 currentSrtPath = ofd.FileName;
                 isSubtitleOpenFromFile = true;
+                isSubtitleOpen = true;
                 this.SaveSubt.Enabled = true;
                 StreamReader sr = new StreamReader(ofd.FileName);
                 this.EditArea.Text = sr.ReadToEnd();
@@ -186,6 +197,22 @@ namespace SubtitleEditorForm
         public String GetSubtitlePath()
         {
             return currentSrtPath;
+        }
+
+        /*
+         * 播放的按键……
+         * 刚载入视频时需要点击该按钮才能开始播放（似乎没法重新播放？）
+         * 
+         * 视频播放结束后点击该按钮可以再次播放（如何判断？）
+         * -> 写一个方法使得视频播放结束之后按钮的文字恢复为“播放”？
+         */
+        private void button_play_Click(object sender, EventArgs e)
+        {
+            model.media.play();
+            if(button_play.Text != "暂停")
+                this.button_play.Text = "暂停";
+            else if (button_play.Text == "暂停")
+                this.button_play.Text = "继续";
         }
         
     }

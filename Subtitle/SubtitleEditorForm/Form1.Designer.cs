@@ -66,7 +66,7 @@
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
-            this.Menu.Size = new System.Drawing.Size(2018, 50);
+            this.Menu.Size = new System.Drawing.Size(1009, 28);
             this.Menu.TabIndex = 0;
             this.Menu.Text = "menuStrip1";
             // 
@@ -76,13 +76,13 @@
             this.OpenVideo,
             this.CloseViedo});
             this.Video.Name = "Video";
-            this.Video.Size = new System.Drawing.Size(74, 42);
+            this.Video.Size = new System.Drawing.Size(44, 20);
             this.Video.Text = "视频";
             // 
             // OpenVideo
             // 
             this.OpenVideo.Name = "OpenVideo";
-            this.OpenVideo.Size = new System.Drawing.Size(269, 38);
+            this.OpenVideo.Size = new System.Drawing.Size(124, 22);
             this.OpenVideo.Text = "载入视频";
             this.OpenVideo.Click += new System.EventHandler(this.OpenVideo_Click);
             // 
@@ -90,7 +90,7 @@
             // 
             this.CloseViedo.Enabled = false;
             this.CloseViedo.Name = "CloseViedo";
-            this.CloseViedo.Size = new System.Drawing.Size(269, 38);
+            this.CloseViedo.Size = new System.Drawing.Size(124, 22);
             this.CloseViedo.Text = "关闭视频";
             this.CloseViedo.Click += new System.EventHandler(this.CloseVideo_Click);
             // 
@@ -103,33 +103,33 @@
             this.SaveSubt,
             this.SaveSubtAs});
             this.Subt.Name = "Subt";
-            this.Subt.Size = new System.Drawing.Size(74, 42);
+            this.Subt.Size = new System.Drawing.Size(44, 20);
             this.Subt.Text = "字幕";
             // 
             // NewSubt
             // 
             this.NewSubt.Name = "NewSubt";
-            this.NewSubt.Size = new System.Drawing.Size(269, 38);
+            this.NewSubt.Size = new System.Drawing.Size(136, 22);
             this.NewSubt.Text = "新建字幕";
             this.NewSubt.Click += new System.EventHandler(this.NewSubt_Click);
             // 
             // LoadSubt
             // 
             this.LoadSubt.Name = "LoadSubt";
-            this.LoadSubt.Size = new System.Drawing.Size(269, 38);
+            this.LoadSubt.Size = new System.Drawing.Size(136, 22);
             this.LoadSubt.Text = "载入字幕";
             this.LoadSubt.Click += new System.EventHandler(this.LoadSubt_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(266, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
             // 
             // SaveSubt
             // 
             this.SaveSubt.Enabled = false;
             this.SaveSubt.Name = "SaveSubt";
-            this.SaveSubt.Size = new System.Drawing.Size(269, 38);
+            this.SaveSubt.Size = new System.Drawing.Size(136, 22);
             this.SaveSubt.Text = "保存字幕";
             this.SaveSubt.Click += new System.EventHandler(this.SaveSubt_Click);
             // 
@@ -137,7 +137,7 @@
             // 
             this.SaveSubtAs.Enabled = false;
             this.SaveSubtAs.Name = "SaveSubtAs";
-            this.SaveSubtAs.Size = new System.Drawing.Size(269, 38);
+            this.SaveSubtAs.Size = new System.Drawing.Size(136, 22);
             this.SaveSubtAs.Text = "另存为字幕";
             this.SaveSubtAs.Click += new System.EventHandler(this.SaveSubtAs_Click);
             // 
@@ -147,20 +147,20 @@
             this.Help,
             this.Authors});
             this.Explanation.Name = "Explanation";
-            this.Explanation.Size = new System.Drawing.Size(74, 42);
+            this.Explanation.Size = new System.Drawing.Size(44, 20);
             this.Explanation.Text = "说明";
             // 
             // Help
             // 
             this.Help.Name = "Help";
-            this.Help.Size = new System.Drawing.Size(185, 38);
+            this.Help.Size = new System.Drawing.Size(112, 22);
             this.Help.Text = "帮助";
             this.Help.Click += new System.EventHandler(this.Help_Click);
             // 
             // Authors
             // 
             this.Authors.Name = "Authors";
-            this.Authors.Size = new System.Drawing.Size(185, 38);
+            this.Authors.Size = new System.Drawing.Size(112, 22);
             this.Authors.Text = "制作者";
             this.Authors.Click += new System.EventHandler(this.Authors_Click);
             // 
@@ -168,10 +168,10 @@
             // 
             this.SubtitleArea.AutoSize = true;
             this.SubtitleArea.Font = new System.Drawing.Font("华文细黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SubtitleArea.Location = new System.Drawing.Point(1446, 104);
+            this.SubtitleArea.Location = new System.Drawing.Point(684, 38);
             this.SubtitleArea.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SubtitleArea.Name = "SubtitleArea";
-            this.SubtitleArea.Size = new System.Drawing.Size(213, 41);
+            this.SubtitleArea.Size = new System.Drawing.Size(110, 21);
             this.SubtitleArea.TabIndex = 1;
             this.SubtitleArea.Text = "字幕编辑区";
             // 
@@ -179,10 +179,10 @@
             // 
             this.EditArea.AcceptsTab = true;
             this.EditArea.AutoWordSelection = true;
-            this.EditArea.Location = new System.Drawing.Point(1454, 180);
+            this.EditArea.Location = new System.Drawing.Point(688, 73);
             this.EditArea.Margin = new System.Windows.Forms.Padding(6);
             this.EditArea.Name = "EditArea";
-            this.EditArea.Size = new System.Drawing.Size(536, 814);
+            this.EditArea.Size = new System.Drawing.Size(294, 427);
             this.EditArea.TabIndex = 2;
             this.EditArea.Text = "";
             // 
@@ -190,20 +190,20 @@
             // 
             this.VideoLabel.AutoSize = true;
             this.VideoLabel.Font = new System.Drawing.Font("华文细黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.VideoLabel.Location = new System.Drawing.Point(46, 104);
+            this.VideoLabel.Location = new System.Drawing.Point(15, 38);
             this.VideoLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.VideoLabel.Name = "VideoLabel";
-            this.VideoLabel.Size = new System.Drawing.Size(213, 41);
+            this.VideoLabel.Size = new System.Drawing.Size(110, 21);
             this.VideoLabel.TabIndex = 3;
             this.VideoLabel.Text = "视频控制区";
             // 
             // control
             // 
             this.control.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.control.Location = new System.Drawing.Point(328, 877);
+            this.control.Location = new System.Drawing.Point(283, 485);
             this.control.Margin = new System.Windows.Forms.Padding(6);
             this.control.Name = "control";
-            this.control.Size = new System.Drawing.Size(168, 63);
+            this.control.Size = new System.Drawing.Size(90, 35);
             this.control.TabIndex = 4;
             this.control.Text = "开始";
             this.control.UseVisualStyleBackColor = true;
@@ -212,10 +212,10 @@
             // axWindowsMediaPlayer
             // 
             this.axWindowsMediaPlayer.Enabled = true;
-            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(69, 171);
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(19, 73);
             this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(1190, 687);
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(640, 360);
             this.axWindowsMediaPlayer.TabIndex = 5;
             // 
             // notifyIcon1
@@ -225,20 +225,24 @@
             // 
             // button_play
             // 
-            this.button_play.Location = new System.Drawing.Point(69, 877);
+            this.button_play.Enabled = false;
+            this.button_play.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_play.Location = new System.Drawing.Point(86, 485);
             this.button_play.Name = "button_play";
-            this.button_play.Size = new System.Drawing.Size(173, 63);
+            this.button_play.Size = new System.Drawing.Size(90, 35);
             this.button_play.TabIndex = 6;
             this.button_play.Text = "播放";
             this.button_play.UseVisualStyleBackColor = true;
+            this.button_play.Click += new System.EventHandler(this.button_play_Click);
             // 
             // button_export
             // 
-            this.button_export.Location = new System.Drawing.Point(586, 877);
+            this.button_export.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_export.Location = new System.Drawing.Point(482, 485);
             this.button_export.Name = "button_export";
-            this.button_export.Size = new System.Drawing.Size(208, 63);
+            this.button_export.Size = new System.Drawing.Size(81, 35);
             this.button_export.TabIndex = 7;
-            this.button_export.Text = "导出到1.srt";
+            this.button_export.Text = "导出";
             this.button_export.UseVisualStyleBackColor = true;
             // 
             // MainForm
@@ -248,7 +252,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(2018, 1050);
+            this.ClientSize = new System.Drawing.Size(1009, 525);
             this.Controls.Add(this.button_export);
             this.Controls.Add(this.button_play);
             this.Controls.Add(this.axWindowsMediaPlayer);
@@ -259,6 +263,8 @@
             this.Controls.Add(this.Menu);
             this.MainMenuStrip = this.Menu;
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximumSize = new System.Drawing.Size(1025, 563);
+            this.MinimumSize = new System.Drawing.Size(1025, 563);
             this.Name = "MainForm";
             this.Text = "Subtitle Editor";
             this.Menu.ResumeLayout(false);
