@@ -1,5 +1,12 @@
 ### Subtitle Editor
 
+#### 任务
+1.完善text editor类，主要是让public void SetLineHighlight(int linenum)方法更好看
+
+2.在Form里，实现一个通知域，我的构想是在菜单栏下面或者是窗口底部放一条栏，可以有进度条，用来输出通知
+
+3，要不要做一个显示一行字的控件，用来显示当前一行的字幕，两侧显示这样字幕开始和结束时间，并且有四个按钮事件，每侧的按钮分别用于向上和向下微调此行开始结束时间
+
 #### 初始构想
 
 使用Windows Media Player 控件
