@@ -47,12 +47,13 @@
             this.EditArea = new System.Windows.Forms.RichTextBox();
             this.VideoLabel = new System.Windows.Forms.Label();
             this.control = new System.Windows.Forms.Button();
-            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.button_play = new System.Windows.Forms.Button();
             this.button_export = new System.Windows.Forms.Button();
             this.Restart = new System.Windows.Forms.Button();
             this.TimeCheck = new System.Windows.Forms.Timer(this.components);
+            this.notification1 = new NotificationControl.Notification();
+            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
-            this.Menu.Size = new System.Drawing.Size(1011, 28);
+            this.Menu.Size = new System.Drawing.Size(1025, 28);
             this.Menu.TabIndex = 0;
             this.Menu.Text = "menuStrip1";
             // 
@@ -170,7 +171,7 @@
             // 
             this.SubtitleArea.AutoSize = true;
             this.SubtitleArea.Font = new System.Drawing.Font("华文细黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SubtitleArea.Location = new System.Drawing.Point(642, 38);
+            this.SubtitleArea.Location = new System.Drawing.Point(635, 77);
             this.SubtitleArea.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SubtitleArea.Name = "SubtitleArea";
             this.SubtitleArea.Size = new System.Drawing.Size(369, 41);
@@ -182,7 +183,7 @@
             this.EditArea.AcceptsTab = true;
             this.EditArea.AutoWordSelection = true;
             this.EditArea.Font = new System.Drawing.Font("Consolas", 9F);
-            this.EditArea.Location = new System.Drawing.Point(646, 73);
+            this.EditArea.Location = new System.Drawing.Point(639, 112);
             this.EditArea.Margin = new System.Windows.Forms.Padding(6);
             this.EditArea.Name = "EditArea";
             this.EditArea.Size = new System.Drawing.Size(338, 403);
@@ -193,7 +194,7 @@
             // 
             this.VideoLabel.AutoSize = true;
             this.VideoLabel.Font = new System.Drawing.Font("华文细黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.VideoLabel.Location = new System.Drawing.Point(15, 38);
+            this.VideoLabel.Location = new System.Drawing.Point(8, 77);
             this.VideoLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.VideoLabel.Name = "VideoLabel";
             this.VideoLabel.Size = new System.Drawing.Size(213, 41);
@@ -203,7 +204,7 @@
             // control
             // 
             this.control.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.control.Location = new System.Drawing.Point(283, 485);
+            this.control.Location = new System.Drawing.Point(285, 518);
             this.control.Margin = new System.Windows.Forms.Padding(6);
             this.control.Name = "control";
             this.control.Size = new System.Drawing.Size(90, 35);
@@ -211,15 +212,6 @@
             this.control.Text = "开始";
             this.control.UseVisualStyleBackColor = true;
             this.control.Click += new System.EventHandler(this.control_Click);
-            // 
-            // axWindowsMediaPlayer
-            // 
-            this.axWindowsMediaPlayer.Enabled = true;
-            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(19, 73);
-            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
-            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(640, 360);
-            this.axWindowsMediaPlayer.TabIndex = 5;
             // 
             // notifyIcon1
             // 
@@ -230,7 +222,7 @@
             // 
             this.button_play.Enabled = false;
             this.button_play.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_play.Location = new System.Drawing.Point(86, 485);
+            this.button_play.Location = new System.Drawing.Point(83, 518);
             this.button_play.Name = "button_play";
             this.button_play.Size = new System.Drawing.Size(90, 35);
             this.button_play.TabIndex = 6;
@@ -241,7 +233,7 @@
             // button_export
             // 
             this.button_export.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_export.Location = new System.Drawing.Point(482, 485);
+            this.button_export.Location = new System.Drawing.Point(482, 518);
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(81, 35);
             this.button_export.TabIndex = 7;
@@ -252,7 +244,7 @@
             // 
             this.Restart.Enabled = false;
             this.Restart.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Restart.Location = new System.Drawing.Point(743, 485);
+            this.Restart.Location = new System.Drawing.Point(730, 518);
             this.Restart.Name = "Restart";
             this.Restart.Size = new System.Drawing.Size(159, 35);
             this.Restart.TabIndex = 8;
@@ -266,6 +258,24 @@
             this.TimeCheck.Interval = 200;
             this.TimeCheck.Tick += new System.EventHandler(this.TimeCheck_Tick);
             // 
+            // notification1
+            // 
+            this.notification1.BackColor = System.Drawing.Color.PaleGreen;
+            this.notification1.Location = new System.Drawing.Point(0, 31);
+            this.notification1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.notification1.Name = "notification1";
+            this.notification1.Size = new System.Drawing.Size(1025, 30);
+            this.notification1.TabIndex = 9;
+            // 
+            // axWindowsMediaPlayer
+            // 
+            this.axWindowsMediaPlayer.Enabled = true;
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(12, 112);
+            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
+            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(640, 360);
+            this.axWindowsMediaPlayer.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -273,7 +283,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(999, 492);
+            this.ClientSize = new System.Drawing.Size(1009, 525);
+            this.Controls.Add(this.notification1);
             this.Controls.Add(this.Restart);
             this.Controls.Add(this.button_export);
             this.Controls.Add(this.button_play);
@@ -285,7 +296,7 @@
             this.Controls.Add(this.Menu);
             this.MainMenuStrip = this.Menu;
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.MaximumSize = new System.Drawing.Size(1025, 563);
+            this.MaximumSize = new System.Drawing.Size(2000, 800);
             this.MinimumSize = new System.Drawing.Size(1025, 563);
             this.Name = "MainForm";
             this.Text = "Subtitle Editor";
@@ -322,6 +333,7 @@
         private System.Windows.Forms.Button button_export;
         private System.Windows.Forms.Button Restart;
         private System.Windows.Forms.Timer TimeCheck;
+        private NotificationControl.Notification notification1;
     }
 }
 

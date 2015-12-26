@@ -29,9 +29,10 @@ namespace NotificationControl
         public Notification()
         {
             InitializeComponent();
-            this.BackColor = Color.Blue;
+            this.BackColor = Color.PaleGreen;
             Width = ControlWidth;
             Height = ControlHeight;
+            Color word_color = Color.Purple;
 
             OuterBorder = new Label();
             InnerBorder = new Label();
@@ -52,18 +53,18 @@ namespace NotificationControl
             InnerBorder.Left = OuterBorder.Left + 2;
             InnerBorder.Height = OuterBorder.Height - 4;
             InnerBorder.Width = OuterBorder.Width - 4;
-            InnerBorder.BackColor = Color.Blue;
+            InnerBorder.BackColor = Color.Snow;
 
             ProcessBar.Top = InnerBorder.Top+2;
             ProcessBar.Left = InnerBorder.Left+2;
             ProcessBar.Height = InnerBorder.Height-4;
             ProcessBar.Width = Convert.ToInt32(percent * (InnerBorder.Width - 4) / 100);
-            ProcessBar.BackColor = Color.White;
+            ProcessBar.BackColor = word_color;
 
             Percent.Top = this.Top+2;
             Percent.Left = OuterBorder.Left +OuterBorder.Width + 2;
             Percent.Font = new Font("黑体", 20, FontStyle.Bold);
-            Percent.ForeColor = Color.White;
+            Percent.ForeColor = word_color;
             Percent.Text = percent + "%";
 
             Message.Top = this.Top + 2;
@@ -71,7 +72,7 @@ namespace NotificationControl
             Message.Height = this.Height * 26 / 30;
             Message.Width = this.Width * 590 / 1000;
             Message.Font = new Font("黑体", 20, FontStyle.Bold);
-            Message.ForeColor = Color.White;
+            Message.ForeColor = word_color;
             Message.Text = message;
 
             this.Controls.Add(Message);

@@ -101,6 +101,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdjustControl\AdjustControl.csproj">
+      <Project>{3366ba26-ff13-4e2d-81e9-e5647b34e460}</Project>
+      <Name>AdjustControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NotificationControl\NotificationControl.csproj">
       <Project>{2ee660d8-234e-4f20-ae59-a2b3322a102e}</Project>
       <Name>NotificationControl</Name>
