@@ -101,6 +101,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NotificationControl\NotificationControl.csproj">
+      <Project>{2ee660d8-234e-4f20-ae59-a2b3322a102e}</Project>
+      <Name>NotificationControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SubtitleEditor\SubClasses.csproj">
       <Project>{8f8d38c0-4551-44e1-a78b-b4fecef89ff2}</Project>
       <Name>SubClasses</Name>

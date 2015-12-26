@@ -68,7 +68,7 @@
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
-            this.Menu.Size = new System.Drawing.Size(1009, 28);
+            this.Menu.Size = new System.Drawing.Size(1011, 28);
             this.Menu.TabIndex = 0;
             this.Menu.Text = "menuStrip1";
             // 
@@ -78,13 +78,13 @@
             this.OpenVideo,
             this.CloseViedo});
             this.Video.Name = "Video";
-            this.Video.Size = new System.Drawing.Size(44, 20);
+            this.Video.Size = new System.Drawing.Size(74, 20);
             this.Video.Text = "视频";
             // 
             // OpenVideo
             // 
             this.OpenVideo.Name = "OpenVideo";
-            this.OpenVideo.Size = new System.Drawing.Size(124, 22);
+            this.OpenVideo.Size = new System.Drawing.Size(209, 38);
             this.OpenVideo.Text = "载入视频";
             this.OpenVideo.Click += new System.EventHandler(this.OpenVideo_Click);
             // 
@@ -92,7 +92,7 @@
             // 
             this.CloseViedo.Enabled = false;
             this.CloseViedo.Name = "CloseViedo";
-            this.CloseViedo.Size = new System.Drawing.Size(124, 22);
+            this.CloseViedo.Size = new System.Drawing.Size(209, 38);
             this.CloseViedo.Text = "关闭视频";
             this.CloseViedo.Click += new System.EventHandler(this.CloseVideo_Click);
             // 
@@ -105,33 +105,33 @@
             this.SaveSubt,
             this.SaveSubtAs});
             this.Subt.Name = "Subt";
-            this.Subt.Size = new System.Drawing.Size(44, 20);
+            this.Subt.Size = new System.Drawing.Size(74, 20);
             this.Subt.Text = "字幕";
             // 
             // NewSubt
             // 
             this.NewSubt.Name = "NewSubt";
-            this.NewSubt.Size = new System.Drawing.Size(136, 22);
+            this.NewSubt.Size = new System.Drawing.Size(233, 38);
             this.NewSubt.Text = "新建字幕";
             this.NewSubt.Click += new System.EventHandler(this.NewSubt_Click);
             // 
             // LoadSubt
             // 
             this.LoadSubt.Name = "LoadSubt";
-            this.LoadSubt.Size = new System.Drawing.Size(136, 22);
+            this.LoadSubt.Size = new System.Drawing.Size(233, 38);
             this.LoadSubt.Text = "载入字幕";
             this.LoadSubt.Click += new System.EventHandler(this.LoadSubt_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(230, 6);
             // 
             // SaveSubt
             // 
             this.SaveSubt.Enabled = false;
             this.SaveSubt.Name = "SaveSubt";
-            this.SaveSubt.Size = new System.Drawing.Size(136, 22);
+            this.SaveSubt.Size = new System.Drawing.Size(233, 38);
             this.SaveSubt.Text = "保存字幕";
             this.SaveSubt.Click += new System.EventHandler(this.SaveSubt_Click);
             // 
@@ -139,7 +139,7 @@
             // 
             this.SaveSubtAs.Enabled = false;
             this.SaveSubtAs.Name = "SaveSubtAs";
-            this.SaveSubtAs.Size = new System.Drawing.Size(136, 22);
+            this.SaveSubtAs.Size = new System.Drawing.Size(233, 38);
             this.SaveSubtAs.Text = "另存为字幕";
             this.SaveSubtAs.Click += new System.EventHandler(this.SaveSubtAs_Click);
             // 
@@ -149,20 +149,20 @@
             this.Help,
             this.Authors});
             this.Explanation.Name = "Explanation";
-            this.Explanation.Size = new System.Drawing.Size(44, 20);
+            this.Explanation.Size = new System.Drawing.Size(74, 20);
             this.Explanation.Text = "说明";
             // 
             // Help
             // 
             this.Help.Name = "Help";
-            this.Help.Size = new System.Drawing.Size(112, 22);
+            this.Help.Size = new System.Drawing.Size(185, 38);
             this.Help.Text = "帮助";
             this.Help.Click += new System.EventHandler(this.Help_Click);
             // 
             // Authors
             // 
             this.Authors.Name = "Authors";
-            this.Authors.Size = new System.Drawing.Size(112, 22);
+            this.Authors.Size = new System.Drawing.Size(185, 38);
             this.Authors.Text = "制作者";
             this.Authors.Click += new System.EventHandler(this.Authors_Click);
             // 
@@ -173,7 +173,7 @@
             this.SubtitleArea.Location = new System.Drawing.Point(642, 38);
             this.SubtitleArea.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SubtitleArea.Name = "SubtitleArea";
-            this.SubtitleArea.Size = new System.Drawing.Size(190, 21);
+            this.SubtitleArea.Size = new System.Drawing.Size(369, 41);
             this.SubtitleArea.TabIndex = 1;
             this.SubtitleArea.Text = "请在此处编辑字幕：";
             // 
@@ -196,7 +196,7 @@
             this.VideoLabel.Location = new System.Drawing.Point(15, 38);
             this.VideoLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.VideoLabel.Name = "VideoLabel";
-            this.VideoLabel.Size = new System.Drawing.Size(110, 21);
+            this.VideoLabel.Size = new System.Drawing.Size(213, 41);
             this.VideoLabel.TabIndex = 3;
             this.VideoLabel.Text = "视频控制区";
             // 
@@ -273,7 +273,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1009, 525);
+            this.ClientSize = new System.Drawing.Size(999, 492);
             this.Controls.Add(this.Restart);
             this.Controls.Add(this.button_export);
             this.Controls.Add(this.button_play);
