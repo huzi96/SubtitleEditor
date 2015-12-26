@@ -51,6 +51,8 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.button_play = new System.Windows.Forms.Button();
             this.button_export = new System.Windows.Forms.Button();
+            this.Restart = new System.Windows.Forms.Button();
+            this.TimeCheck = new System.Windows.Forms.Timer(this.components);
             this.Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
             this.SuspendLayout();
@@ -168,21 +170,22 @@
             // 
             this.SubtitleArea.AutoSize = true;
             this.SubtitleArea.Font = new System.Drawing.Font("华文细黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SubtitleArea.Location = new System.Drawing.Point(684, 38);
+            this.SubtitleArea.Location = new System.Drawing.Point(642, 38);
             this.SubtitleArea.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SubtitleArea.Name = "SubtitleArea";
-            this.SubtitleArea.Size = new System.Drawing.Size(110, 21);
+            this.SubtitleArea.Size = new System.Drawing.Size(190, 21);
             this.SubtitleArea.TabIndex = 1;
-            this.SubtitleArea.Text = "字幕编辑区";
+            this.SubtitleArea.Text = "请在此处编辑字幕：";
             // 
             // EditArea
             // 
             this.EditArea.AcceptsTab = true;
             this.EditArea.AutoWordSelection = true;
-            this.EditArea.Location = new System.Drawing.Point(688, 73);
+            this.EditArea.Font = new System.Drawing.Font("Consolas", 9F);
+            this.EditArea.Location = new System.Drawing.Point(646, 73);
             this.EditArea.Margin = new System.Windows.Forms.Padding(6);
             this.EditArea.Name = "EditArea";
-            this.EditArea.Size = new System.Drawing.Size(294, 427);
+            this.EditArea.Size = new System.Drawing.Size(338, 403);
             this.EditArea.TabIndex = 2;
             this.EditArea.Text = "";
             // 
@@ -245,6 +248,24 @@
             this.button_export.Text = "导出";
             this.button_export.UseVisualStyleBackColor = true;
             // 
+            // Restart
+            // 
+            this.Restart.Enabled = false;
+            this.Restart.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Restart.Location = new System.Drawing.Point(743, 485);
+            this.Restart.Name = "Restart";
+            this.Restart.Size = new System.Drawing.Size(159, 35);
+            this.Restart.TabIndex = 8;
+            this.Restart.Text = "重新添加字幕";
+            this.Restart.UseVisualStyleBackColor = true;
+            this.Restart.Visible = false;
+            this.Restart.Click += new System.EventHandler(this.Restart_Click);
+            // 
+            // TimeCheck
+            // 
+            this.TimeCheck.Interval = 200;
+            this.TimeCheck.Tick += new System.EventHandler(this.TimeCheck_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -253,6 +274,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1009, 525);
+            this.Controls.Add(this.Restart);
             this.Controls.Add(this.button_export);
             this.Controls.Add(this.button_play);
             this.Controls.Add(this.axWindowsMediaPlayer);
@@ -298,6 +320,8 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Button button_play;
         private System.Windows.Forms.Button button_export;
+        private System.Windows.Forms.Button Restart;
+        private System.Windows.Forms.Timer TimeCheck;
     }
 }
 

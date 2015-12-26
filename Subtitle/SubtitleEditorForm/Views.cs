@@ -44,7 +44,7 @@ namespace SubtitleEditorForm
             media = new MediaControl(form.axWindowsMediaPlayer, form.GetVideoPath());
             editor = new EditorControl(form.EditArea);
 
-            //testing();
+            testing();
         }
 
         public void testing_export()
@@ -76,7 +76,15 @@ namespace SubtitleEditorForm
             if (TickTock % 2 == 1)
             {
                 last_end = media.GetCurrentPosition();
-                Srt_Entries.Add(new SrtEntry(last_begin, last_end - last_begin, lines[line_number]));
+                try
+                {
+                    Srt_Entries.Add(new SrtEntry(last_begin, last_end - last_begin, lines[line_number]));
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    MessageBox.Show("已经到达字幕底部");
+                    TickTock = 1;
+                }
                 line_number++;
             }
             else
@@ -84,7 +92,8 @@ namespace SubtitleEditorForm
                 last_begin = media.GetCurrentPosition();
                 editor.SetLineHighlight(line_number);
             }
-            TickTock++; TickTock %= 10;
+            TickTock++;
+            TickTock %= 10;
         }
 
         /// <summary>
@@ -173,11 +182,20 @@ namespace SubtitleEditorForm
             int lastlen = editor.Lines[lastline].Length;
             editor.Select(editor.GetFirstCharIndexFromLine(lastline), lastlen);
             editor.SelectionColor = System.Drawing.Color.Black;
+            editor.SelectionFont = new System.Drawing.Font("Consolas", 9);
 
-            int len = editor.Lines[linenum].Length;
-            lastline = linenum;
-            editor.Select(editor.GetFirstCharIndexFromLine(linenum), len);
-            editor.SelectionColor = System.Drawing.Color.BlueViolet;
+            try
+            {
+                int len = editor.Lines[linenum].Length;
+                lastline = linenum;
+                editor.Select(editor.GetFirstCharIndexFromLine(linenum), len);
+                editor.SelectionColor = System.Drawing.Color.Blue;
+                editor.SelectionFont = new System.Drawing.Font("Consolas", 9, System.Drawing.FontStyle.Bold);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                MessageBox.Show("已经到达字幕底部！");
+            }
         }
         public string get_line(int linenum)
         {

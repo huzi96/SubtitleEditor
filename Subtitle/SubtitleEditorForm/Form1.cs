@@ -20,7 +20,6 @@ namespace SubtitleEditorForm
 
             /* 注册事件处理函数 */
             control.Click += model.clickHandler;
-            //button_play.Click += (sender,args)=> { model.media.play(); } ;
             button_export.Click += (sender, args) => { model.testing_export(); };
             /* 执行testing任务 */
             model.testing();
@@ -37,6 +36,7 @@ namespace SubtitleEditorForm
         //当前字幕文件的路径
         static String currentVideoPath = "";
         //当前视频文件的路径
+        static String[] subtitles = null;
 
         /*
          * 以下为菜单栏的事件
@@ -171,16 +171,23 @@ namespace SubtitleEditorForm
          */
         private void control_Click(object sender, EventArgs e)
         {
-            if (this.control.Text == "开始")
+            TimeCheck.Enabled = true;
+            if (this.control.Text == "开始" && model.line_number < model.lines.Length)
             {
                 this.control.Text = "结束";
                 //...
             }
             else
             {
+                if (model.line_number >= model.lines.Length)
+                {
+                    this.Restart.Visible = true;
+                    this.Restart.Enabled = true;
+                }
                 this.control.Text = "开始";
                 //...
             }
+            subtitles = model.lines;
         }
 
         /*
@@ -213,6 +220,47 @@ namespace SubtitleEditorForm
                 this.button_play.Text = "暂停";
             else if (button_play.Text == "暂停")
                 this.button_play.Text = "继续";
+        }
+
+        /*
+         * 点击该按钮时当前要添加的字幕回到最上端
+         */
+        private void Restart_Click(object sender, EventArgs e)
+        {
+            model.line_number = 0;
+            this.control.Text = "开始";
+            this.Restart.Enabled = false;
+            this.Restart.Visible = false;
+        }
+
+        /*
+         * 找到第一处修改的字幕的行数
+         */
+        private int FindFirstEdited()
+        {
+            for (int index = 0; index < subtitles.Length; index++)
+            {
+                if (index < model.lines.Length)
+                {
+                    if (subtitles[index] != model.lines[index])
+                        return index;
+                }
+                else
+                {
+                    if (subtitles[index] != "")
+                        return index;
+                }
+            }
+            return 299999999;
+        }
+
+        private void TimeCheck_Tick(object sender, EventArgs e)
+        {
+            if (FindFirstEdited() <= model.line_number)
+            {
+                TimeCheck.Stop();
+                MessageBox.Show("提醒：在已添加的字幕中修改可能导致糟糕的后果。");
+            }
         }
         
     }
