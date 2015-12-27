@@ -13,7 +13,7 @@ namespace NotificationControl
     public partial class Notification: UserControl
     {
         const int ControlWidth = 1025;
-        const int ControlHeight = 30;
+        const int ControlHeight = 20;
 
         double percent;
         string message;
@@ -44,7 +44,7 @@ namespace NotificationControl
             message = "通知栏";
 
             OuterBorder.Top = this.Height * 2 / 30;
-            OuterBorder.Left = this.Width * 600 / 1000;
+            OuterBorder.Left = this.Width * 630 / 1000;
             OuterBorder.Height = this.Height * 26 / 30;
             OuterBorder.Width = this.Width * 300 / 1000;
             OuterBorder.BackColor = Color.White;
@@ -55,23 +55,23 @@ namespace NotificationControl
             InnerBorder.Width = OuterBorder.Width - 4;
             InnerBorder.BackColor = Color.Snow;
 
-            ProcessBar.Top = InnerBorder.Top+2;
-            ProcessBar.Left = InnerBorder.Left+2;
-            ProcessBar.Height = InnerBorder.Height-4;
+            ProcessBar.Top = InnerBorder.Top + 2;
+            ProcessBar.Left = InnerBorder.Left + 2;
+            ProcessBar.Height = InnerBorder.Height - 4;
             ProcessBar.Width = Convert.ToInt32(percent * (InnerBorder.Width - 4) / 100);
             ProcessBar.BackColor = word_color;
 
-            Percent.Top = this.Top+2;
-            Percent.Left = OuterBorder.Left +OuterBorder.Width + 2;
-            Percent.Font = new Font("黑体", 20, FontStyle.Bold);
+            Percent.Top = this.Top + 2;
+            Percent.Left = OuterBorder.Left +OuterBorder.Width + 20;
+            Percent.Font = new Font("黑体", 12);
             Percent.ForeColor = word_color;
             Percent.Text = percent + "%";
 
             Message.Top = this.Top + 2;
-            Message.Left = this.Left + 2;
+            Message.Left = this.Left + 10;
             Message.Height = this.Height * 26 / 30;
             Message.Width = this.Width * 590 / 1000;
-            Message.Font = new Font("黑体", 20, FontStyle.Bold);
+            Message.Font = new Font("黑体", 12);
             Message.ForeColor = word_color;
             Message.Text = message;
 
