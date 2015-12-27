@@ -54,6 +54,7 @@
             this.TimeCheck = new System.Windows.Forms.Timer(this.components);
             this.notification1 = new NotificationControl.Notification();
             this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.adjustTimeController1 = new SubtitleEditorForm.AdjustTimeController();
             this.Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
-            this.Menu.Size = new System.Drawing.Size(1025, 28);
+            this.Menu.Size = new System.Drawing.Size(1253, 28);
             this.Menu.TabIndex = 0;
             this.Menu.Text = "menuStrip1";
             // 
@@ -276,6 +277,17 @@
             this.axWindowsMediaPlayer.Size = new System.Drawing.Size(640, 360);
             this.axWindowsMediaPlayer.TabIndex = 5;
             // 
+            // adjustTimeController1
+            // 
+            this.adjustTimeController1.EndTime = System.TimeSpan.Parse("00:00:00");
+            this.adjustTimeController1.Location = new System.Drawing.Point(-152, 431);
+            this.adjustTimeController1.Margin = new System.Windows.Forms.Padding(6);
+            this.adjustTimeController1.Name = "adjustTimeController1";
+            this.adjustTimeController1.Size = new System.Drawing.Size(1405, 55);
+            this.adjustTimeController1.StartTime = System.TimeSpan.Parse("00:00:00");
+            this.adjustTimeController1.subline = "";
+            this.adjustTimeController1.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -284,6 +296,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1009, 525);
+            this.Controls.Add(this.adjustTimeController1);
             this.Controls.Add(this.notification1);
             this.Controls.Add(this.Restart);
             this.Controls.Add(this.button_export);
@@ -334,6 +347,7 @@
         private System.Windows.Forms.Button Restart;
         private System.Windows.Forms.Timer TimeCheck;
         private NotificationControl.Notification notification1;
+        private AdjustTimeController adjustTimeController1;
     }
 }
 
