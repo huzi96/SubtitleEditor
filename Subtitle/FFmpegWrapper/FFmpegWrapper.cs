@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace SubtitleEditor.FFmpeg
 {
-    public class FFmpegWrapper
+    class FFmpegWrapper
     {
         //对这些参数指定的视频文件调用ffmpeg进行字幕渲染
         public void Render(String videoFileName, String srtFileName, String TargetFile = "")
@@ -15,7 +15,7 @@ namespace SubtitleEditor.FFmpeg
             string extention = videoFileName.Split('.').Last<string>();
             if (TargetFile == "")
             {
-                TargetFile = videoFileName + ".out.mp4";
+                TargetFile = "out." + extention;
             }
             if (TargetFile == videoFileName)
             {
@@ -23,15 +23,15 @@ namespace SubtitleEditor.FFmpeg
             }
             const string ffmpegFilePath = @"..\bin\ffmpeg.exe";
             Process prc = new Process();
-            prc.StartInfo.CreateNoWindow = false;
+            prc.StartInfo.CreateNoWindow = true;
             prc.StartInfo.FileName = ffmpegFilePath;
-            prc.StartInfo.UseShellExecute = true;
+            prc.StartInfo.UseShellExecute = false;
             prc.StartInfo.RedirectStandardError = false;
-            prc.StartInfo.RedirectStandardInput = false;
+            prc.StartInfo.RedirectStandardInput = true;
             prc.StartInfo.RedirectStandardOutput = false;
             prc.EnableRaisingEvents = true;
             
-            prc.StartInfo.Arguments = string.Format("-y -i {0} -vf subtitles={1} {2}", videoFileName,srtFileName,TargetFile);
+            prc.StartInfo.Arguments = string.Format("-i {0} -vf subtitles={1} {2}", videoFileName,srtFileName,TargetFile);
             prc.Exited += (sender, args) => { this.renderComplete(sender, args); };
             prc.Start();
         }

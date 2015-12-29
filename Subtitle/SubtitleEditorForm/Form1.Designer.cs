@@ -34,8 +34,10 @@
             this.Video = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenVideo = new System.Windows.Forms.ToolStripMenuItem();
             this.CloseViedo = new System.Windows.Forms.ToolStripMenuItem();
+            this.Render_click = new System.Windows.Forms.ToolStripMenuItem();
             this.Subt = new System.Windows.Forms.ToolStripMenuItem();
             this.NewSubt = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Clear_entries = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadSubt = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveSubt = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,12 +51,13 @@
             this.control = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.button_play = new System.Windows.Forms.Button();
-            this.button_export = new System.Windows.Forms.Button();
             this.Restart = new System.Windows.Forms.Button();
             this.TimeCheck = new System.Windows.Forms.Timer(this.components);
             this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.adjustTimeController1 = new SubtitleEditorForm.AdjustTimeController();
             this.notification1 = new NotificationControl.Notification();
+            this.timer_sub = new System.Windows.Forms.Timer(this.components);
+            this.timer_responding = new System.Windows.Forms.Timer(this.components);
             this.Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +81,8 @@
             // 
             this.Video.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenVideo,
-            this.CloseViedo});
+            this.CloseViedo,
+            this.Render_click});
             this.Video.Name = "Video";
             this.Video.Size = new System.Drawing.Size(44, 21);
             this.Video.Text = "视频";
@@ -86,7 +90,7 @@
             // OpenVideo
             // 
             this.OpenVideo.Name = "OpenVideo";
-            this.OpenVideo.Size = new System.Drawing.Size(124, 22);
+            this.OpenVideo.Size = new System.Drawing.Size(172, 22);
             this.OpenVideo.Text = "载入视频";
             this.OpenVideo.Click += new System.EventHandler(this.OpenVideo_Click);
             // 
@@ -94,14 +98,22 @@
             // 
             this.CloseViedo.Enabled = false;
             this.CloseViedo.Name = "CloseViedo";
-            this.CloseViedo.Size = new System.Drawing.Size(124, 22);
+            this.CloseViedo.Size = new System.Drawing.Size(172, 22);
             this.CloseViedo.Text = "关闭视频";
             this.CloseViedo.Click += new System.EventHandler(this.CloseVideo_Click);
+            // 
+            // Render_click
+            // 
+            this.Render_click.Name = "Render_click";
+            this.Render_click.Size = new System.Drawing.Size(172, 22);
+            this.Render_click.Text = "将字幕渲染到视频";
+            this.Render_click.Click += new System.EventHandler(this.Render_Click_handler);
             // 
             // Subt
             // 
             this.Subt.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewSubt,
+            this.btn_Clear_entries,
             this.LoadSubt,
             this.toolStripMenuItem1,
             this.SaveSubt,
@@ -116,6 +128,13 @@
             this.NewSubt.Size = new System.Drawing.Size(136, 22);
             this.NewSubt.Text = "新建字幕";
             this.NewSubt.Click += new System.EventHandler(this.NewSubt_Click);
+            // 
+            // btn_Clear_entries
+            // 
+            this.btn_Clear_entries.Name = "btn_Clear_entries";
+            this.btn_Clear_entries.Size = new System.Drawing.Size(136, 22);
+            this.btn_Clear_entries.Text = "清空重来";
+            this.btn_Clear_entries.Click += new System.EventHandler(this.btn_Clear_entries_Click);
             // 
             // LoadSubt
             // 
@@ -204,13 +223,14 @@
             // 
             // control
             // 
+            this.control.Enabled = false;
             this.control.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.control.Location = new System.Drawing.Point(540, 479);
             this.control.Margin = new System.Windows.Forms.Padding(6);
             this.control.Name = "control";
             this.control.Size = new System.Drawing.Size(74, 35);
             this.control.TabIndex = 4;
-            this.control.Text = "开始";
+            this.control.Text = "行始";
             this.control.UseVisualStyleBackColor = true;
             this.control.Click += new System.EventHandler(this.control_Click);
             // 
@@ -231,16 +251,6 @@
             this.button_play.UseVisualStyleBackColor = true;
             this.button_play.Click += new System.EventHandler(this.button_play_Click);
             // 
-            // button_export
-            // 
-            this.button_export.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_export.Location = new System.Drawing.Point(892, 479);
-            this.button_export.Name = "button_export";
-            this.button_export.Size = new System.Drawing.Size(68, 35);
-            this.button_export.TabIndex = 7;
-            this.button_export.Text = "导出";
-            this.button_export.UseVisualStyleBackColor = true;
-            // 
             // Restart
             // 
             this.Restart.Enabled = false;
@@ -249,7 +259,7 @@
             this.Restart.Name = "Restart";
             this.Restart.Size = new System.Drawing.Size(159, 35);
             this.Restart.TabIndex = 8;
-            this.Restart.Text = "重新添加字幕";
+            this.Restart.Text = "预览";
             this.Restart.UseVisualStyleBackColor = true;
             this.Restart.Visible = false;
             this.Restart.Click += new System.EventHandler(this.Restart_Click);
@@ -289,6 +299,14 @@
             this.notification1.Size = new System.Drawing.Size(1009, 20);
             this.notification1.TabIndex = 9;
             // 
+            // timer_sub
+            // 
+            this.timer_sub.Tick += new System.EventHandler(this.timer_sub_Tick);
+            // 
+            // timer_responding
+            // 
+            this.timer_responding.Tick += new System.EventHandler(this.timer_responding_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -300,7 +318,6 @@
             this.Controls.Add(this.adjustTimeController1);
             this.Controls.Add(this.notification1);
             this.Controls.Add(this.Restart);
-            this.Controls.Add(this.button_export);
             this.Controls.Add(this.button_play);
             this.Controls.Add(this.axWindowsMediaPlayer);
             this.Controls.Add(this.control);
@@ -308,6 +325,7 @@
             this.Controls.Add(this.EditArea);
             this.Controls.Add(this.SubtitleArea);
             this.Controls.Add(this.Menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.Menu;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1025, 600);
@@ -330,7 +348,6 @@
         private System.Windows.Forms.ToolStripMenuItem CloseViedo;
         private System.Windows.Forms.ToolStripMenuItem Subt;
         private System.Windows.Forms.ToolStripMenuItem NewSubt;
-        private System.Windows.Forms.ToolStripMenuItem LoadSubt;
         private System.Windows.Forms.ToolStripMenuItem SaveSubt;
         private System.Windows.Forms.ToolStripMenuItem SaveSubtAs;
         private System.Windows.Forms.ToolStripMenuItem Explanation;
@@ -344,11 +361,15 @@
         public AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Button button_play;
-        private System.Windows.Forms.Button button_export;
         private System.Windows.Forms.Button Restart;
         private System.Windows.Forms.Timer TimeCheck;
-        private NotificationControl.Notification notification1;
-        private AdjustTimeController adjustTimeController1;
+        public NotificationControl.Notification notification1;
+        public AdjustTimeController adjustTimeController1;
+        public System.Windows.Forms.Timer timer_sub;
+        private System.Windows.Forms.ToolStripMenuItem Render_click;
+        private System.Windows.Forms.Timer timer_responding;
+        private System.Windows.Forms.ToolStripMenuItem btn_Clear_entries;
+        private System.Windows.Forms.ToolStripMenuItem LoadSubt;
     }
 }
 

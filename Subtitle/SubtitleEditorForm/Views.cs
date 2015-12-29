@@ -14,6 +14,9 @@ namespace SubtitleEditorForm
     {
         public MediaControl media;
         public EditorControl editor;
+        public AdjustControl adjust;
+        public NotificationControl.Notification notification;
+        public Timer timer_sub;
 
         public string[] lines
         {
@@ -43,16 +46,30 @@ namespace SubtitleEditorForm
             /*建立model之下的部件*/
             media = new MediaControl(form.axWindowsMediaPlayer, form.GetVideoPath());
             editor = new EditorControl(form.EditArea);
-
-            testing();
+            adjust = new AdjustControl(form.adjustTimeController1);
+            notification = form.notification1;
+            timer_sub = form.timer_sub;
         }
 
-        public void testing_export()
+        public void newTask()
         {
-            string srtfilename = @"1.srt";
-            FileStream fs = new FileStream(srtfilename, FileMode.OpenOrCreate);
-            export(fs);
-            fs.Close();
+            line_number = 0;
+            Srt_Entries.Clear();
+            TickTock = 0;
+        }
+
+        public void playAndPauseHandler(object sender, EventArgs args)
+        {
+            if (media.playing)
+            {
+                media.pause();
+                media.playing = false;
+            }
+            else
+            {
+                media.play();
+                media.playing = true;
+            }
         }
 
         /// <summary>
@@ -63,7 +80,14 @@ namespace SubtitleEditorForm
         {
             SrtDocument srt_doc = new SrtDocument(Srt_Entries);
             var srt = Formats.Srt;
-            srt.WriteTo(s, srt_doc);
+            srt.WriteTo(s, System.Text.Encoding.Default ,srt_doc);
+        }
+
+        public void export(System.IO.Stream s, System.Text.Encoding encoding)
+        {
+            SrtDocument srt_doc = new SrtDocument(Srt_Entries);
+            var srt = Formats.Srt;
+            srt.WriteTo(s, encoding, srt_doc);
         }
 
         /// <summary>
@@ -79,18 +103,34 @@ namespace SubtitleEditorForm
                 try
                 {
                     Srt_Entries.Add(new SrtEntry(last_begin, last_end - last_begin, lines[line_number]));
+
+                    adjust.adjust.subline = lines[line_number];
+                    adjust.adjust.EndTime = last_end;
                 }
                 catch (IndexOutOfRangeException e)
                 {
                     MessageBox.Show("已经到达字幕底部");
+
                     TickTock = 1;
                 }
+                /* 下面设置adjust control */
                 line_number++;
+
             }
             else
             {
-                last_begin = media.GetCurrentPosition();
-                editor.SetLineHighlight(line_number);
+                try
+                {
+                    last_begin = media.GetCurrentPosition();
+                    editor.SetLineHighlight(line_number);
+                    adjust.adjust.StartTime = last_begin;
+                    adjust.adjust.EndTime = new TimeSpan(0);
+                    adjust.adjust.subline = lines[line_number];
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    notification.SetMessage("到达字幕底部");
+                }
             }
             TickTock++;
             TickTock %= 10;
@@ -109,6 +149,7 @@ namespace SubtitleEditorForm
         const int ControlWidth = 600;
         const int ControlHeight = 400;
         AxWMPLib.AxWindowsMediaPlayer main_player;
+        public bool playing;
 
         /// <summary>
         /// 媒体控制类，传入一个windows media player 对象和这个对象对应的媒体文件url
@@ -120,6 +161,8 @@ namespace SubtitleEditorForm
             main_player.URL = url;
             main_player.Width = ControlWidth;
             main_player.Height = ControlHeight;
+
+            playing = false;
         }
 
         public void SetURL(string url)
@@ -143,6 +186,12 @@ namespace SubtitleEditorForm
         {
             main_player.Ctlcontrols.play();
         }
+
+        public void pause()
+        {
+            main_player.Ctlcontrols.pause();
+        }
+        
     }
     public class EditorControl
     {
@@ -205,6 +254,16 @@ namespace SubtitleEditorForm
         {
             return editor.Lines[lastline];
         }
+    }
+    public class AdjustControl
+    {
+        public AdjustTimeController adjust;
+
+        public AdjustControl(AdjustTimeController _cont)
+        {
+            adjust = _cont;
+        }
+
     }
 
 }

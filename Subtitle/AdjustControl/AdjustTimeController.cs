@@ -19,12 +19,15 @@ namespace SubtitleEditorForm
         public AdjustTimeController()
         {
             InitializeComponent();
+            TimeChange += (sender, args) => {; };
             numericHourEnd.ValueChanged += (sender,args) => { TimeChange(sender, args); };
             numericMinuteEnd.ValueChanged += (sender, args) => { TimeChange(sender, args); };
             numericSecondEnd.ValueChanged += (sender, args) => { TimeChange(sender, args); };
             numericHourStart.ValueChanged += (sender, args) => { TimeChange(sender, args); };
             numericMinuteStart.ValueChanged += (sender, args) => { TimeChange(sender, args); };
             numericSecondStart.ValueChanged += (sender, args) => { TimeChange(sender, args); };
+            this.EndTime = new TimeSpan(0);
+            this.StartTime = new TimeSpan(0);
         }
         public TimeSpan StartTime
         {
